@@ -1,0 +1,8 @@
+<div #timeSelector class="hour-selector" (click)="openInputTime($event)">
+  <div class="hour" id="hour"></div>
+  <span class="divide-time" style="background-color: #e7e9e9; color: #000;" (click)="openInputTime($event)">:</span>
+  <div class="minute" id="minute"></div>
+  <!-- <div class="meridium" id="meridium"></div> -->
+  <input #inputTime matInput type="tel" [(ngModel)]="timeInputValue"
+  style="position: absolute; top: 100px; opacity: 0; width: 1px;" maxlength="4">  
+</div>

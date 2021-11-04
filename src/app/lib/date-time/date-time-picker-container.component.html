@@ -1,0 +1,113 @@
+<div [cdkTrapFocus]="picker.pickerMode !== 'inline'"
+     [@fadeInPicker]="picker.pickerMode === 'inline'? '' : 'enter'"
+     class="h2t-dt-container-inner">
+
+    <h2t-date-time-calendar
+            *ngIf="pickerType === 'both' || pickerType === 'calendar'"
+            class="h2t-dt-container-row"
+            [firstDayOfWeek]="picker.firstDayOfWeek"
+            [(pickerMoment)]="pickerMoment"
+            [selected]="picker.selected"
+            [selecteds]="picker.selecteds"
+            [selectMode]="picker.selectMode"
+            [minDate]="picker.minDateTime"
+            [maxDate]="picker.maxDateTime"
+            [dateFilter]="picker.dateTimeFilter"
+            [startView]="picker.startView"
+            [hideOtherMonths]="picker.hideOtherMonths"
+            (yearSelected)="picker.selectYear($event)"
+            (monthSelected)="picker.selectMonth($event)"
+            (selectedChange)="dateSelected($event)"></h2t-date-time-calendar>
+
+    <!-- <h2t-date-time-timer
+            *ngIf="pickerType === 'both' || pickerType === 'timer'"
+            [ngClass]="{'h2t-dt-container-row': displayMode === 'vertical', 'h2t-dt-container-row-horizontal': displayMode === 'horizontal'}"
+            [pickerMoment]="pickerMoment"
+            [minDateTime]="picker.minDateTime"
+            [maxDateTime]="picker.maxDateTime"
+            [showSecondsTimer]="picker.showSecondsTimer"
+            [hour12Timer]="picker.hour12Timer"
+            [stepHour]="picker.stepHour"
+            [stepMinute]="picker.stepMinute"
+            [stepSecond]="picker.stepSecond"
+            (selectedChange)="timeSelected($event)"></h2t-date-time-timer> -->
+    <!-- <h2t-time-picker class="h2t-time-picker"></h2t-time-picker> -->
+
+    <div *ngIf="picker.isInRangeMode"
+         role="radiogroup"
+         class="h2t-dt-container-info h2t-dt-container-row">
+        <div role="radio" [tabindex]="activeSelectedIndex === 0 ? 0 : -1"
+             [attr.aria-checked]="activeSelectedIndex === 0"
+             class="h2t-dt-control h2t-dt-container-range h2t-dt-container-from"
+             [ngClass]="{'h2t-dt-container-info-active': activeSelectedIndex === 0}"
+             (click)="handleClickOnInfoGroup($event, 0)"
+             (keydown)="handleKeydownOnInfoGroup($event, to, 0)" #from>
+            <span class="h2t-dt-control-content h2t-dt-container-range-content" tabindex="-1">
+                <span class="h2t-dt-container-info-label">{{fromLabel}}:</span>
+                <span class="h2t-dt-container-info-value">{{fromFormattedValue}}</span>
+            </span>
+        </div>
+        <div role="radio" [tabindex]="activeSelectedIndex === 1 ? 0 : -1"
+             [attr.aria-checked]="activeSelectedIndex === 1"
+             class="h2t-dt-control h2t-dt-container-range h2t-dt-container-to"
+             [ngClass]="{'h2t-dt-container-info-active': activeSelectedIndex === 1}"
+             (click)="handleClickOnInfoGroup($event, 1)"
+             (keydown)="handleKeydownOnInfoGroup($event, from, 1)" #to>
+            <span class="h2t-dt-control-content h2t-dt-container-range-content" tabindex="-1">
+                <span class="h2t-dt-container-info-label">{{toLabel}}:</span>
+                <span class="h2t-dt-container-info-value">{{toFormattedValue}}</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="h2t-dt-container-buttons h2t-dt-container-row-mobile h2t-dt-container-time-zone"
+    [ngClass]="{'display-none': calendar && calendar.currentView != 'month'}">
+        <div style="width: 50%;">
+            <span class="h2t-dt-container-control-button" tabindex="-1">
+                時刻
+            </span>
+        </div>
+        <div style="width: 50%;" id="div-time-input">
+            <h2t-time-picker 
+            (outputHour)="outputHour($event)"
+            (outputMinute)="outputMinute($event)"
+            [inputHour]="inputHourValue"
+            [inputMinute]="inputMinuteValue"
+             class="h2t-time-picker-mobile"></h2t-time-picker>
+        </div>
+    </div>
+
+    <div *ngIf="showControlButtons" class="h2t-dt-container-buttons h2t-dt-container-row h2t-dt-container-row-mobile">
+        <button class="h2t-dt-control h2t-dt-control-button h2t-dt-container-control-button"
+                type="button" tabindex="0"
+                (click)="onCancelClicked($event)">
+            <span class="h2t-dt-control-content h2t-dt-control-button-content" tabindex="-1">
+                {{cancelLabel}}
+            </span>
+        </button>
+        <button class="h2t-dt-control h2t-dt-control-button h2t-dt-container-control-button"
+                type="button" tabindex="0"
+                (click)="onSetClicked($event)">
+            <span class="h2t-dt-control-content h2t-dt-control-button-content" tabindex="-1">
+                {{setLabel}}
+            </span>
+        </button>
+    </div>
+
+    <!-- <div *ngIf="showControlButtons" class="h2t-dt-container-buttons h2t-dt-container-row">
+        <button class="h2t-dt-control h2t-dt-control-button h2t-dt-container-control-button"
+                type="button" tabindex="0"
+                (click)="onCancelClicked($event)">
+            <span class="h2t-dt-control-content h2t-dt-control-button-content" tabindex="-1">
+                {{cancelLabel}}
+            </span>
+        </button>
+        <button class="h2t-dt-control h2t-dt-control-button h2t-dt-container-control-button"
+                type="button" tabindex="0"
+                (click)="onSetClicked($event)">
+            <span class="h2t-dt-control-content h2t-dt-control-button-content" tabindex="-1">
+                {{setLabel}}
+            </span>
+        </button>
+    </div> -->
+</div>

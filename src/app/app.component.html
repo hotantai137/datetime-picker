@@ -1,0 +1,26 @@
+<label for="daterange">Datetime range (click, then press 'Set' to modify):</label>
+<input [selectMode]="'single'"
+       [h2tDateTimeTrigger]="date_range_component" [h2tDateTime]="date_range_component"
+       style="width: 100%; color: cornflowerblue"
+       id="daterange" matInput>
+<h2t-date-time #date_range_component ></h2t-date-time>
+<h2t-date-time #date_range_component1 [pickerMode]="'dialog'"></h2t-date-time>
+<input type="text" [h2tDateTime]="date_range_component1" [selectMode]="'single'" 
+ matInput hidden>
+<button [h2tDateTimeTrigger]="date_range_component1"
+>Click me</button>
+<input [h2tDateTimeTrigger]="dt5" [h2tDateTime]="dt5">
+    <h2t-date-time [pickerMode]="'dialog'" #dt5></h2t-date-time>
+<!-- <button (click)="openDialogTimePicker($event)">Show time picker</button> -->
+<!-- <input readonly type="text" value="cubic-bezier(.17,.67,1,1.23)" /> -->
+
+<!-- <div class="date-selector">
+	<div class="year" id="year1"></div>
+	<div class="month" id="month1"></div>
+	<div class="day" id="day1"></div>
+</div> -->
+<!-- <div class="hour-selector">
+       <div class="hour" id="hour"></div>
+       <div class="minute" id="minute"></div>
+       <div class="meridium" id="meridium"></div>
+</div> -->

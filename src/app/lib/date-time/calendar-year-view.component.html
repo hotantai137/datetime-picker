@@ -1,0 +1,16 @@
+<table class="h2t-dt-calendar-table h2t-dt-calendar-year-table">
+    <thead class="h2t-dt-calendar-header">
+    <tr>
+        <th class="h2t-dt-calendar-table-divider" aria-hidden="true" colspan="3"></th>
+    </tr>
+    </thead>
+    <tbody h2t-date-time-calendar-body role="grid"
+           [rows]="months" [numCols]="3" [cellRatio]="3 / 7"
+           [activeCell]="activeCell"
+           [todayValue]="todayMonth"
+           [selectedValues]="selectedMonths"
+           [selectMode]="selectMode"
+           (keydown)="handleCalendarKeydown($event)"
+           (select)="selectCalendarCell($event)">
+    </tbody>
+</table>
